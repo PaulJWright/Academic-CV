@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.25)  12 AUG 2017 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.25)  12 AUG 2017 20:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -363,20 +363,9 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 Package hyperref Warning: Suppressing link with empty target on input line 393.
 
 
-! Too many }'s.
-l.393 ...NASA Goddard Space Flight Center (GSFC)}}
-                                                   \hfill {2016}
-? r.
-OK, entering \nonstopmode...
 
 Package hyperref Warning: Suppressing link with empty target on input line 406.
 
-
-! Too many }'s.
-l.406 ...ithsonian Center for Astrophysics (CfA)}}
-                                                   \hfill {2013 -- 2014}
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
 
 
 Package hyperref Warning: Suppressing link with empty target on input line 425.
@@ -425,14 +414,7 @@ Package hyperref Warning: Suppressing link with empty target on input line 601.
 Package hyperref Warning: Suppressing link with empty target on input line 602.
 
 
-[2]
-! Too many }'s.
-l.666 ...tp://www.github.com/pauljwright}{GitHub}}
-                                                  .
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
+[2] 
 AED: lastpage setting LastPage
 [3]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 668.
