@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.25)  12 AUG 2017 20:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.25)  12 AUG 2017 20:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -250,7 +250,8 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 164.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/doi/doi.sty
 Package: doi 2007/07/24 handle doi numbers
-) (./AcademicCV.aux)
+)
+No file AcademicCV.aux.
 \openout1 = `AcademicCV.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 321.
@@ -268,7 +269,6 @@ LaTeX Font Info:    ... okay on input line 321.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 321.
 LaTeX Font Info:    ... okay on input line 321.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 321.
-
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -340,8 +340,6 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 321.
 LaTeX Info: Redefining \pageref on input line 321.
 LaTeX Info: Redefining \nameref on input line 321.
-
-(./AcademicCV.out) (./AcademicCV.out)
 \@outlinefile=\write3
 \openout3 = `AcademicCV.out'.
 
@@ -379,6 +377,9 @@ Package hyperref Warning: Suppressing link with empty target on input line 430.
 Package hyperref Warning: Suppressing link with empty target on input line 463.
 
 
+
+LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 530.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 530.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -414,23 +415,46 @@ Package hyperref Warning: Suppressing link with empty target on input line 601.
 Package hyperref Warning: Suppressing link with empty target on input line 602.
 
 
-[2] 
+
+LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 625.
+
+[2]
+
+Package lastpage Warning: Rerun to get the references right on input line 668.
+
+
 AED: lastpage setting LastPage
+
+LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 668.
+
 [3]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 668.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 668.
  (./AcademicCV.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 668.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 668.
-Package rerunfilecheck Info: File `AcademicCV.out' has not changed.
-(rerunfilecheck)             Checksum: 4A17D551FC7D7FEDF994DF0288376E14;805.
+
+
+Package rerunfilecheck Warning: File `AcademicCV.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `AcademicCV.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  4A17D551FC7D7FEDF994DF0288376E14;805.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 668.
  ) 
 Here is how much of TeX's memory you used:
- 6201 strings out of 493117
- 91210 string characters out of 6135432
- 190420 words of memory out of 5000000
- 9592 multiletter control sequences out of 15000+600000
+ 6180 strings out of 493117
+ 90945 string characters out of 6135432
+ 190291 words of memory out of 5000000
+ 9577 multiletter control sequences out of 15000+600000
  22439 words of font info for 26 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
  31i,13n,43p,369b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -439,10 +463,10 @@ exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014
 /texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dis
 t/fonts/type1/urw/times/utmri8a.pfb>
-Output written on AcademicCV.pdf (3 pages, 68718 bytes).
+Output written on AcademicCV.pdf (3 pages, 68105 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 125 compressed objects within 2 object streams
+ 92 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  23 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
