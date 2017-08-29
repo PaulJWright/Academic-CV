@@ -11,7 +11,7 @@ Paul J. Wright's LaTeX CV based on that of http://www.tedpavlic.com/
 Sun Hard X-Ray Transient Events</i>, ApJ (in revision)   
 
 2. Wang, J., Simões, P. J. A., Jeffrey, N. L. S. et al 2017. <i>Observations of Reconnection
-Flows in a Flare on The Solar Disk</i>, ApJL (in revision)   
+Flows in a Flare on The Solar Disk</i>, ApJL (accepted)   
 
 3. Wright, P. J., Hannah, I. G., Grefenstette, B. W., et al 2017. <i>Microflare Heating of a
 Solar Active Region Observed with NuSTAR, Hinode/XRT, and SDO/AIA</i>, ApJ, 844,
