@@ -1,0 +1,919 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[11pt]{article}
+\RequirePackage[T1]{fontenc}
+
+% LaTeX will typeset using Computer Modern Roman, which a lot of
+% non-mathematicians and non-engineers won't like. Also, a few PDF
+% viewers may not render CMR very well. Instead, Times New Roman can
+% be used. That's what this package does.
+\usepackage{times}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+% (NOTE: This requires the times package above)
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+
+% This package helps LaTeX auto-hyphenate hyphenated words if you use
+% special hyphens. For example, bio\-/mimicry will properly hyphenate
+% ``mimicry'' if necessary.
+\usepackage[shortcuts]{extdash}
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=a4paper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=0.6in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titlesa
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+% Provides special list environments and macros to create new ones
+\usepackage[shortlabels]{enumitem}
+
+% Simpler bibsections for CV sections
+% (thanks to natbib for inspiration)
+%
+% * For lists of references with hanging indents and no numbers:
+%
+%   \begin{bibsection}
+%       \item ...
+%   \end{bibsection}
+%
+% * For numbered lists of references (with hanging indents):
+%
+%   \begin{bibenum}
+%       \item ...
+%   \end{bibenum}
+%
+%   Note that bibenum numbers continuously throughout. To reset the
+%   counter, use
+%
+%   \restartlist{bibenum}
+%
+%   at the place where you want the numbering to reset.
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newlist{bibsection}{itemize}{3}
+\setlist[bibsection]{label=,leftmargin=\bibhang,%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\newlist{bibenum}{enumerate}{3}
+\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\let\oldendbibenum\endbibenum
+\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+\let\oldendbibsection\endbibsection
+\def\endbibsection{\oldendbibsection\vspace{-.6\baselineskip}}
+\makeatother
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[{\includegraphics[height=1.5in]{my_picture}}]{Your Name}
+%
+% the picture will be flush right across from the name. For this example
+% to work, make sure the extra set of curly braces is included. Also
+% makes ure that \usepackage{graphicx} is somewhere in the preamble.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\def\item{\pagebreak[2]\oldItem}\csname preFixOuterList#1\endcsname}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+%%% FORMATTING MACROS
+
+% Provides a linked \doi{#1} that links doi:#1 to http://dx.doi.org/#1
+\usepackage{doi}
+% To change the text before the DOI, adjust this command
+%\renewcommand\doitext{doi:}
+
+% Provides a linked \url{#1} that doesn't require escape characters
+\usepackage{url}
+
+% You can adjust the style \url{} uses here:
+% (options are: same, rm, sf, tt; defaults to tt)
+\urlstyle{same}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+% (uncomment to typeset the e\-/mail address in typewriter font;
+%  otherwise, will be typeset in the \urlstyle above)
+%\DeclareUrlCommand\emaillink{\urlstyle{tt}}
+\providecommand*\emaillink[1]{\nolinkurl{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\emaillink{#1}}}
+
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+% Custom hyphenation rules for words that LaTeX has trouble with
+\hyphenation{bio-mim-ic-ry bio-in-spi-ra-tion re-us-a-ble pro-vid-er Media-Wiki}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Paul James Wright}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table. Table is one row made up of three parboxes. The left
+%       parbox has address info, the middle parbox has a vertical bar,
+%       and the right parbox has phone and electronic contact
+%       information.
+%
+% MACROS: \rcollength is the width of the right column of the table
+%             (adjust it to your liking; default is 1.85in).
+%         \spacewidth is width of area between left and right boxes.
+%
+%\newlength{\rcollength}\setlength{\rcollength}{0in}%
+\newlength{\spacewidth}\setlength{\spacewidth}{20pt}
+%
+%\begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
+
+{Rm~614, Kelvin Building \hfill Work: +44 (0)14133 08855 \\
+University of Glasgow \hfill{Web: \href{http://www.pauljwright.co.uk}{www.pauljwright.co.uk}} \\ 
+Glasgow, G12 8QQ \hfill{Email: paul.wright@glasgow.ac.uk} \\ 
+United Kingdom \hfill{Publication List: \href{https://ui.adsabs.harvard.edu/#search/q=orcid\%3A0000-0001-9021-611X&sort=date+desc}{SAO/NASA ADS}}}
+
+%\hfill{GitHub: \href{http://www.github.com/pauljwright}{www.github.com/pauljwright}} }
+
+
+%\end{tabular}
+
+%%
+%% In modern CV's, it seems like ``Objective'' is frowned upon. Instead,
+%% incorporate it into a well-constructed cover letter. The ``More
+%% information'' can go at the end of the CV, but it should not distract
+%% from the section giving references available to contact.
+%%
+%
+% \section{Objective}
+%
+% Placement in an academic position (i.e., faculty, postdoctoral, or
+% research scientist) that allows for advanced research in distributed
+% complex adaptive systems (i.e., modeling, analysis, design, and
+% verification) with a particular focus on the control of engineered
+% agents (e.g., for communications, control, software, electronics, and
+% sustainability) and the analysis of biological phenomena (e.g.,
+% self-organization, ecological rationality)
+% \begin{innerlist}
+% \item More information and auxiliary documents can be found at\\\url{http://www.tedpavlic.com/facjobsearch/}
+% \end{innerlist}
+
+\section{Research Summary}
+
+%My interests range from stellar to solar physics; my main interests lie in the heating of the solar atmosphere, including active regions and loops. I have expertise in the analysis of spectroscopic and narrowband Extreme Ultra-Violet (EUV) and X-ray data from the {\it Solar Dynamics Observatory} and {\it Hinode}, in addition to the hard X-ray (HXR) observations from {\it NuSTAR}'s heliophysics campaign. I am currently using a hydrodynamics code (Enthalpy-Based Thermal Evolution of Loop, EBTEL) to model light curves from coronal loops. I am particularly interested in the weak bremsstrahlung emission, with a view to understanding the requirements for future X-ray instrumentation to study the coronal heating problem.
+
+%My research interests range from solar to stellar physics, with the majority of my research concentrating on the heating of the solar corona. I have expertise in the analysis of spectroscopic and narrowband Extreme Ultra-Violet (EUV) and X-ray data from the {\it Solar Dynamics Observatory} and {\it Hinode}, in addition to the hard X-ray (HXR) observations from {\it NuSTAR}'s heliophysics campaign. I am currently using a hydrodynamics code (Enthalpy-Based Thermal Evolution of Loops, EBTEL) to model light curves from coronal loops. In particular, I am interested in the weak bremsstrahlung emission, with a view to understanding the requirements for future X-ray instrumentation to study the coronal heating problem.
+
+
+%My research interests are in the fields of solar and stellar flares, and my Ph.D. research has concentrated on one of the unsolved questions in Heliophysics -- the coronal heating problem. I have expertise of image and spectroscopic data analysis from EUV and X-ray data from the {\it Solar Dynamics Observatory} and {\it Hinode} in addition to expertise in analysing the hard X-ray data obtained during {\it NuSTAR}'s heliophysics campaign, and observations of stellar flares observed by {\it Kepler}. I am also currently using a hydrodynamics code (Enthalpy-Based Thermal Evolution of Loops, EBTEL) to model light curves from coronal loops. %%% --- 17th March
+
+My research interests are in solar and stellar physics, and my Ph.D. research has concentrated on one of the unsolved problems in Heliophysics -- the coronal heating problem. During my Ph.D. I have gained expertise in numerous time-series analysis techniques and methods for recovering the differential emission measure (an ill-posed inverse problem) from a wide range of spectroscopic and narrowband data. I am also a member of the {\it NuSTAR} Heliophysics working group and I led the analysis of the first solar flare observed by the {\it NuSTAR} hard X-ray {\it astrophysics} imaging spectrometer. I have also developed a stellar flare detection algorithm based on the observations obtained by the {\it Kepler} space telescope to determine the superflare rate of the Sun.
+
+
+%My research interests range from solar to stellar physics with the majority of my Ph.D. research concentrating on the heating of the solar corona. I have expertise in the analysis of spectroscopic and narrowband Extreme Ultra-Violet (EUV) and X-ray data from the {\it Solar Dynamics Observatory} and {\it Hinode}, in addition to the hard X-ray (HXR) observations from {\it NuSTAR}'s heliophysics campaign, and white-light observations from {\it Kepler}. I am also currently using a hydrodynamics code (Enthalpy-Based Thermal Evolution of Loops, EBTEL) to model light curves from coronal loops.
+
+
+%My interests range from stellar to solar physics; my main interests lie in the heating of the solar atmosphere, including active regions and loops. I have expertise in the analysis of Extreme Ultra-Violet (EUV) and X-ray data from the {\it SDO}, and {\it Hinode} satellites, in addition to the hard X-ray (HXR) imaging/spectroscopic observations from \textit{NuSTAR}'s heliophysics campaign. Furthermore, I am currently modelling coronal light-curves using the \texttt{EBTEL} (Enthalpy-Based Thermal Evolution of Loops) hydrodynamics code with particular interest in the weak bremmstrahlung components.
+
+%My interests range from stellar to solar physics; my main interests lie in the heating of the solar atmosphere, including active regions and loops. I have expertise in analysis of data from \textit{Kepler}, \textit{SDO}/AIA, \textit{Hinode}/EIS, \textit{Hinode}/XRT, and \textit{NuSTAR}'s heliophysics observations. In addition, I am currently modelling coronal light-curves using the \texttt{EBTEL} (Enthalpy-Based Thermal Evolution of Loops) hydrodynamics code.
+
+%%%% EDUCATION %%%%
+\section{Education}
+
+\href{http://www.gla.ac.uk/}{\textbf{University of Glasgow}},
+Glasgow, UK \hfill {2014 -- present}
+\begin{innerlist}
+\item[] Ph.D.
+        \href{}
+             {Solar Physics}
+        \begin{innerlist}
+        \item[] Thesis Topic: \emph{The Energetics of Small Flares and Brightenings}
+        \item[] Advisers:
+              \href{}
+                   {Dr Iain G. Hannah, Dr Alexander MacKinnon}
+        \end{innerlist}
+
+\end{innerlist}
+
+\halfblankline
+
+\href{http://www.soton.ac.uk/}{\textbf{University of Southampton}},
+Southampton, UK \hfill {2010 -- 2014}
+\begin{innerlist}
+
+\item[] MPhys
+        \href{http://www.phys.soton.ac.uk/programmes/f3fm-mphys-astronomy-year-abroad-4-yrs/}
+             {Astrophysics with a year abroad}
+        \begin{innerlist}
+        \item[] First-class honours (1:1)
+         \item[] Adviser:
+              \href{}
+                   {Professor Malcolm Coe}
+        \end{innerlist}
+
+\end{innerlist}
+
+\halfblankline
+
+\href{https://www.cfa.harvard.edu/}{\textbf{Harvard University/Harvard-Smithsonian CfA}},
+Cambridge, MA, USA \hfill {2013 -- 2014}
+\begin{innerlist}
+
+\item[] MPhys
+        \href{http://www.phys.soton.ac.uk/programmes/f3fm-mphys-astronomy-year-abroad-4-yrs/}
+             {Astrophysics with a year abroad}
+        \begin{innerlist}
+        \item[] Thesis Topic: \emph{The Superflare Rates of Solar-Like Stars}
+        \item[] Advisers:
+              \href{}
+                   {Dr Steven H. Saar, Dr Jeremy J. Drake}
+        \end{innerlist}
+
+\end{innerlist}
+
+\section{Current Academic Appointments}
+
+\textbf{Researcher},
+            \href{http://www.frontierdevelopmentlab.org/}{NASA Frontier Development Lab (FDL)}
+            \hfill {2018 -- present}
+\begin{innerlist}
+
+    \item[] \href{http://seti.org/}{SETI Institute}/\href{http://astro.gla.ac.uk/}{NASA Ames Research Center, Mountain View, CA}
+    \begin{innerlist}
+        	\item[] Project: \emph{Predicting Solar Spectral Irradiance from {\it SDO}/AIA Observations}
+  	\item{} An 8-week applied Artificial Intelligence accelerator established to tackle knowledge gaps useful to NASA's science and exploration goals, and humanity. 
+  	\item{} Implemented Deep Learning algorithms (Convolutional Neural Networks; CNNs) such as U-Net, AlexNet and ResNet to predict disk-integrated Solar Spectral Irradiance (SSI) observed by {\it SDO}/EVE (MEGS-A) from high-resolution {\it SDO}/AIA images which share a common latent space. 
+  	\item{} Predicted MEGS-A SSI with average relative discrepancies of less than $3\%$ using a Residual Neural Network (ResNet) augmented with a Multi-Layer Perceptron (MLP).%\$20 Million on a new instrument.
+  	%\item{} from four years of observations (0.7Tb per day?), in order 
+  	\item{} Used a 1x1 CNN (equivalent to an MLP) to improve the computational speed for differential emission measure (DEM) inversion. Further improvement to the resulting DEMs were obtained by training a CNN to correct the DEMs to minimise the residual between observed and synthesized SSI.
+  	\item{} Received the NASA Frontier Development Lab ``Contribution to Science'' award.
+  	 \end{innerlist}
+
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Affiliate Staff Member},
+            \href{http://www.gla.ac.uk/}{University of Glasgow}
+            \hfill {2017 -- present}
+\begin{innerlist}
+
+    \item[] \href{http://astro.gla.ac.uk/}{SUPA School of Physics and Astronomy}
+    \begin{innerlist}
+  	\item{} Using the EBTEL hydrodynamics code to model light curves from coronal loops. The parameter space of these simulations will be constrained by observations obtained during the {\it NuSTAR} heliophysics campaign, and these simulations will be used to test a variety of analysis techniques.
+    \end{innerlist}
+
+\end{innerlist}
+%
+\newpage
+\makeheading{Paul James Wright} 
+
+\section{Previous Academic Appointments}
+ 
+%\section{Academic Appointments}
+
+ \textbf{Post-Graduate Research Assistant},
+            \href{http://www.gla.ac.uk/}{University of Glasgow}
+            \hfill {2014 -- 2017}
+\begin{innerlist}
+
+    \item[] \href{http://www.astro.gla.ac.uk/}{SUPA School of Physics and Astronomy}
+    \begin{innerlist}
+    	\item[] Project: \emph{The Energetics of Small Flares and Brightenings}
+    	\item{} Analysed observations of the Sun with {\it NuSTAR}, a telescope not designed for heliophysics. These observations are the most sensitive of their kind and have resulted in numerous, wide-ranging, highly-collaborative peer-reviewed publications.
+    	\item{} Analysed 20 million non-flaring coronal time-series in pursuit of signatures of the coronal heating mechanism. Techniques included time-lag analysis (cross-correlation), Fourier analysis, wavelet analysis, and local intermittency measure (LIM).
+    	\item{} Studied the temperature distribution of the solar atmosphere through the recovery of an ill-posed inverse problem (the differential emission measure, DEM) using techniques such as Tikhonov regularisation, Markov-chain Monte Carlo, Spline fitting, and Sparse Inversion (by Basis Pursuit).
+         \item{} The press-release image produced from the {\it NuSTAR} observations obtained for \href{https://doi.org/10.3847/1538-4357/aa7a59}{Wright {\it et al.} 2017} was published by numerous news outlets and is one of the five iconic images from \href{https://www.nasa.gov/feature/jpl/nustars-first-five-years-in-space}{{\it NuSTAR}'s first five years in space}.
+    \end{innerlist}
+        	\item[] Primary Collaborators: {\it Dr Iain Hannah, Dr Alexander MacKinnon, Dr Hugh Hudson, \\ Dr Paulo Sim{\~o}es}
+\end{innerlist}
+ 
+%\newpage
+%\makeheading{Paul James Wright} 
+%
+\halfblankline
+
+\textbf{Visiting Researcher},
+	\href{https://www.nasa.gov/goddard}{NASA Goddard Space Flight Center (GSFC)} \hfill {2016}
+\begin{innerlist}
+
+    \item[] \href{https://science.gsfc.nasa.gov/heliophysics/}{Heliophysics Science Division}
+    \begin{innerlist}
+    	\item{} Explored the possibility of implementing DEM maps in the \href{www.helioviewer.org}{Helioviewer} project, and their usefulness as an input for various established analysis techniques.
+    \end{innerlist}
+        	\item[] Collaborators: {\it Dr Nicholeen Viall, Dr Jack Ireland}
+
+\end{innerlist}
+
+\halfblankline
+
+ \textbf{Research Scholar},
+	\href{https://www.cfa.harvard.edu/}{Harvard-Smithsonian Center for Astrophysics (CfA)} \hfill {2013 -- 2014}
+\begin{innerlist}
+
+    \item[] \href{https://www.cfa.harvard.edu/research/hea/sun}{Solar and Stellar X-ray Group}
+    \begin{innerlist}
+    	\item{} Designed and implemented a sophisticated stellar flare detection routine for long-cadence (30 mins) {\it Kepler} data obtained from a proprietary set of spectroscopically verified solar-type stars in three open clusters.\item{} A preliminary report on this work had coverage by \href{http://www.sciencemag.org/news/2015/08/when-sun-s-next-superflare-due?rss=1}{Science} and \href{http://www.smithsonianmag.com/smart-news/when-next-solar-superflare-hit-earth-180956288/}{the Smithsonian Magazine}.%, and \href{http://www.dailymail.co.uk/sciencetech/article-3198285/Is-Earth-hit-SUPERFLARE-Scientists-calculate-massive-solar-outburst-due.html}{The Daily Mail}.
+    \end{innerlist}    	
+    	\item[] Collaborators: {\it Dr Steven Saar, Dr S{\o}ren Meibom, Dr Jeremy Drake, Dr Jos{\'e} D. do Nascimento Jr, Dr Vinay Kashyap}
+\end{innerlist}
+\halfblankline
+
+ \textbf{Summer Research Intern},
+	\href{http://www.soton.ac.uk/}{University of Southampton} \hfill {2013}
+\begin{innerlist}
+
+    \item[] \href{http://www.astro.soton.ac.uk/}{Astronomy Group}
+    \begin{innerlist}
+    	\item{} Investigated the presence of double blue straggler sequences in globular clusters using Hubble Space Telescope (ACS, WFPC2) data.
+    \end{innerlist}    	
+    	\item[] Collaborators: {\it Dr Andrea Dieball}
+
+\end{innerlist}
+
+ 
+%
+% % Add a little space to nudge next ``Ref'd Journal Publications'' marginpar
+% % down to make room for tall ``Submitted Journal Publications''
+% % marginpar. If there are enough submitted journal publications, this
+% % space will not be needed (and should be removed).
+% \vspace{0.1in}
+
+\section{Refereed Journal Publications}
+
+\begin{bibenum}
+	\item{} Marsh, A.~J., Smith, D.~M., Glesener, L. \textit{et al} 2017. {\it First NuSTAR Limits on Quiet Sun Hard X-Ray Transient Events}, \MYhref[magenta]{https://doi.org/10.3847/1538-4357/aa9122}{{\it ApJ}}, \href{https://ui.adsabs.harvard.edu/?#abs/2017ApJ...849..131M}{849, 131}
+	
+	\item{} Wang, J., Sim{\~o}es, P.~J.~A., Jeffrey, N.~L.~S. \textit{et al} 2017. {\it Observations of Reconnection Flows in a Flare on The Solar Disk}, \MYhref[magenta]{https://doi.org/10.3847/2041-8213/aa8904}{{\it ApJL}}, \href{http://adsabs.harvard.edu/abs/2017arXiv170808706W}{847, L1}
+
+	\item{} {\bf Wright, P. J.}, Hannah, I.~G., Grefenstette, B. W., \textit{et al} 2017. {\it Microflare Heating of a Solar Active Region Observed with {\it NuSTAR}, {\it Hinode}/XRT, and {\it SDO}/AIA}, \MYhref[magenta]{https://doi.org/10.3847/1538-4357/aa7a59}{{\it ApJ}}, \href{http://adsabs.harvard.edu/abs/2017ApJ...844..132W}{844, 132}
+
+	\item{} Kuhar, M., Krucker, S., Hannah, I. G., \textit{et al} 2017. {\it Evidence of Significant Energy Input in the Late Phase of a Solar Flare from NuSTAR X-ray Observations}, \MYhref[magenta]{http://doi:10.3847/1538-4357/835/1/6}{{\it ApJ}}, \href{http://adsabs.harvard.edu/abs/2017ApJ...835....6K}{835, 6}
+
+\end{bibenum}
+
+%	\item{} Hannah, I. G.; {\bf Wright, P. J.}, Grefenstette, B. \textit{et al} 2015, American Geophysical Union, Fall Meeting, abstract \#SH13B-2442
+%
+%	\item{} Saar, S., Meibom, S., 
+%\& {\bf Wright, P. J.}\ 2015, IAU General Assembly, 22, 58518 
+%
+%	\item{} Saar, S.~H., {\bf Wright, P. J.}, Meibom, S., Kashyap, V., 
+%\& Drake, J.~J.\ 2014, American Astronomical Society Meeting Abstracts \#224, 224, \#123.43 
+%
+%	\item{} \textbf{Wright, P.~J.}, Saar, 
+%S.~H., Meibom, S., Kashyap, V., 
+%\& Drake, J.~J.\ 2014, American Astronomical Society Meeting Abstracts \#223, 223, \#151.08 
+%
+%	\item{}  Gorosabel, J., et al. (17 coauthors including {\bf Wright, P.})\ 2012, GRB 120327A: IAC80 I-Band Observations, GRB Coordinates Network, GCN Circular 13130.% \textbf{citations: 1}
+%
+%	\item{} Walker, C., et al. (16 coauthors including {\bf Wright, P.})\ 2012, GRB120326A: IAC80 \\ Observations, GRB Coordinates Network, GCN Circular 13112. %\textbf{citations: 4}
+
+
+% Add a little space to nudge next ``Conference Publications'' marginpar
+% down to make room for tall ``Submitted Conference Publications''
+% marginpar. If there are enough submitted journal publications, this
+% space will not be needed (and should be removed).
+%\vspace{0.1in}
+
+%\section{Conference Publications}
+
+%\section{Conference Talks}
+
+%\section{Conference Posters}
+
+%\section{Invited Talks}
+
+%\section{Book Chapters}
+
+%\section{Other Publications}
+
+%\section{Books in Preparation}
+
+
+\newpage
+\makeheading{Paul James Wright} 
+
+
+\section{First Author Publications in Preparation (Working Titles)}
+
+ \begin{bibenum}
+ 	\item{} {\bf Wright, P. J.}, Galvez, R., \textit{et al} 2019. {\it DeepEM: A Deep Learning Approach to DEM Inversion}
+ 	\item{} {\bf Wright, P. J.}, MacKinnon, A., Hannah, I.~G., and Sim{\~o}es, P.~J.~A. 2019. {\it Local Intermittency Measure: The Application to Active Region Light Curves}
+	\item{} {\bf Wright, P. J.}, Hannah, I.~G., Viall, N.~M., \textit{et al} 2019. {\it The Thermal Time Evolution of Active Regions Determined by SDO/AIA}
+	\item{} {\bf Wright, P. J.}, Saar, S.~H., Meibom, S., \textit{et al} 2019. {\it  The Age-Dependent Superflare Rates of G-Type Dwarfs In Three {\it Kepler} Clusters}
+	\item{} {\bf Wright, P. J.}, Saar, S.~H., Meibom, S., \textit{et al} 2019. {\it An Extension of The Age-Dependent Superflare Rates to F- and K-Type Dwarfs}
+\end{bibenum}
+
+\section{Conferences, Workshops, \& Schools}
+
+\textbf{Invited Oral Presentations}
+\begin{innerlist}
+     \item[] \textit{ISSI Team Meeting: Coronal Nanoflares}, Bern, CH \hfill {2018} % \hfill {Jan. 2016}
+     \item[] \textit{ISSI Team Meeting: Coronal Nanoflares}, Bern, CH \hfill {2016} % \hfill {Jan. 2016}
+     \item[] \textit{Harvard-Smithsonian Center for Astrophysics}, Cambridge, MA, USA \hfill {2014} % \hfill {May 2014}
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Oral/e-Poster Presentations}
+\begin{innerlist}
+     \item[] \textit{Solar Physics Division Meeting (SPD/AAS)}, Portland, OR, USA \hfill {2017} % \hfill {Sept. 2015}
+     \item[] \textit{Coronal Loops Workshop \textsc{viii}}, Palermo, Sicily, IT \hfill {2017} % \hfill {Sept. 2015}
+     \item[] \textit{Living with a Star (SDO/LWS) Workshop}, Burlington, VT, USA \hfill {2016} % \hfill {Sept. 2015}
+     \item[] \textit{Hinode 10}, Nagoya, JP \hfill {2016} % \hfill {Sept. 2015}
+     \item[] \textit{National Astronomy Meeting 2016}, Nottingham, UK \hfill {2016} % \hfill {Sept. 2015}
+     \item[] \textit{Hinode 9}, Belfast, UK \hfill {2015} % \hfill {Sept. 2015}
+%\end{innerlist} 
+%
+%\newpage
+%\makeheading{Paul James Wright} 
+%
+%
+%\section{Conferences, Workshops, \& Schools (Cont.)}
+%\textbf{Oral/e-Poster Presentations (Cont.)}
+%\begin{innerlist}
+     \item[] \textit{Glasgow-Cambridge Flare Workshop}, Glasgow, UK \hfill {2015} % \hfill {Apr. 2015}
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Poster Presentations}
+\begin{innerlist}
+     \item[] \textit{European Solar Physics Meeting (ESPM)}, Budapest, HU \hfill {2017}
+     \item[] \textit{Solar Physics Division Meeting (SPD/AAS)}, Portland, OR, USA \hfill {2017} % \hfill {Sept. 2015}
+     \item[] \textit{Living with a Star (SDO/LWS) Workshop}, Burlington, VT, USA \hfill {2016} % \hfill {Sept. 2015}
+     \item[] \textit{Coronal Loops Workshop \textsc{vii}}, Cambridge, UK \hfill {2015} % \hfill {July 2015}
+     \item[] \textit{National Astronomy Meeting (NAM) 2015}, Llandudno, UK \hfill {2015} %\hfill {July 2015}
+     \item[] \textit{223rd AAS Meeting}, National Harbor, MD, USA \hfill {2014} %\hfill {Jan. 2014}
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Schools Attended}
+\begin{innerlist}
+     \item[] \textit{CESRA Radio Summer School 2015}, Glasgow, UK \hfill {2015} %\hfill {Aug. 2015}
+     \item[] \textit{STFC Advanced Summer School in Solar Physics}, Dundee, UK \hfill {2014} %\hfill {Aug. -- Sept. 2014}
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Additional Conferences/Workshops Attended}
+\begin{innerlist}
+     \item[] \textit{NuSTAR Heliophysics Workshop (remote participation)}, Berkeley, CA, USA \hfill {2017} %\hfill {Nov. 2014}
+     \item[] \textit{SUPA Cormack Astronomy Meeting}, Edinburgh, UK \hfill {2015} %\hfill {Nov. 2014}
+     \item[] \textit{Royal Astronomical Society Discussion Meeting: Results from IRIS}, London, UK \hfill {2015} %\hfill {Jan. 2015}
+     \item[] \textit{SUPA Cormack Astronomy Meeting}, Edinburgh, UK \hfill {2014} %\hfill {Nov. 2014}
+     \item[] \textit{1st Space Glasgow Research Conference}, Glasgow, UK \hfill {2014} %\hfill {Oct. 2014}
+\end{innerlist}
+
+\section{Awards and Grants \\ Total: \textsterling7000}
+
+{\bf University of Glasgow}
+\begin{innerlist}
+\item[] \href{}{NASA Frontier Development Lab, Contribution to Science Award} \hfill 2018
+\item[] \href{https://spd.aas.org/education/students#poster_award}{Solar Physics Division Meeting (AAS/SPD) Student Poster Award} \hfill 2017
+\item[] \href{https://spd.aas.org/prizes/studentship}{Solar Physics Division Meeting (AAS/SPD) Studentship Award} \hfill 2017
+\item[] \href{}{Coronal Loops Workshop \textsc{viii} Travel Award } \hfill 2017
+\item[] \href{}{National Astronomical Observatory of Japan Travel Award} \hfill 2016
+\item[] \href{}{Hinode 9 Travel Award} \hfill 2015
+\item[] \href{}{European Space Agency/Cambridge Philosophical Society Travel Award} \hfill 2015
+\end{innerlist}
+\end{innerlist}
+\end{innerlist}
+
+\clearpage
+
+\end{innerlist}
+%
+\newpage
+\makeheading{Paul James Wright} 
+%{\bf Harvard University/Harvard-Smithsonian CfA}
+%\begin{innerlist}
+%\item[] \href{}{223rd AAS Travel Grant} \hfill 2014
+%\end{innerlist}
+%
+
+
+\section{Awards and Grants (Cont.)}
+{\bf University of Southampton}
+\begin{innerlist}
+\item[] \href{}{Research Scholarship} \hfill 2013
+\item[] \href{}{Summer Studentship Grant} \hfill 2013
+\end{innerlist}
+\end{innerlist}
+
+\section{Teaching}
+\href{http://www.coursera.org/}{\textbf{Coursera Inc.}}
+\begin{innerlist}
+\item[] \href{http://www.coursera.community/#mentor}{\textbf{``Data Scientists Toolbox'' Community Mentor}} \hfill {2017 -- present}
+\begin{innerlist}
+\item[] An invited mentor of a course in the Data Science specialisation offered by Johns Hopkins University. %Mentors are invited based on academic performance and by the support provided to fellow learners in the course forums.
+\end{innerlist}
+\end{innerlist}
+\halfblankline
+
+\href{http://www.gla.ac.uk/}{\textbf{University of Glasgow}}
+\begin{innerlist}
+\item[] \textbf{Astronomy 1 Tutorial Demonstrator} \hfill {2016 - 2017}
+\begin{innerlist}
+\item[] Supervised students, and marked first-year astronomy problem sets.
+\end{innerlist}
+\item[] \textbf{Astronomy 3/4 (Honours) Laboratory Demonstrator} \hfill {2015 - 2016}
+\begin{innerlist}
+\item[] Demonstrated, supervised, and marked a number of final-year research projects covering topics such as asteroid light curves, and solar limb darkening.
+\end{innerlist}
+\item[] \textbf{Physics Pre-University Summer School} \hfill {2015} 
+\begin{innerlist}
+\item[] Taught at a pre-university school for students entering the first year of undergraduate education.
+\end{innerlist}
+\end{innerlist}
+
+\section{Memberships}
+     \href{https://www.nustar.caltech.edu/page/sun}{\textbf{\textit{NuSTAR} Heliophysics Working Group}}, Member \hfill {2015 -- present} \\
+     \href{http://www.issibern.ch/}{\textbf{International Space Science Institute (ISSI)}}, Young Scientist Member \hfill {2015 -- present}
+    \begin{innerlist}
+     \item[] Member of Paola Testa's ISSI Team: \href{http://helio.cfa.harvard.edu/ISSI/welcome_pt.html}{\textit{New Diagnostics of Particle Acceleration in Solar Coronal Nanoflares from Chromospheric Observations and Modelling}}
+    \end{innerlist}
+    \href{https://www.ras.org.uk/}{\textbf{Royal Astronomical Society}}, RAS Fellow \hfill {2014 -- present}
+    % \item American Geophysical Union (AGU Member) \hfill {2015 -- present}
+% The ``More Info'' section may not be necessary; make sure it's short
+% so it doesn't prevent people from seeing references available to
+% contact.
+
+  \end{innerlist}
+%\section{Technical Skills:} Python, IDL, $\LaTeX$, Linux/Unix, Bash, Microsoft Office
+%{\it General:} Interdisciplinary Collaboration, Public Speaking, Teaching, Writing (Technical \& Lay), Data Analysis, Statistics
+
+\section{Community Involvement}
+
+%\begin{innerlist}
+{\bf \href{http://www.nature.com/ncomms/}{Nature Communications}}, Reviewer \hfill 2017 -- present \\
+{\bf \href{}{Glasgow Astronomy \& Astrophysics Group Meeting}}, Organiser \hfill 2017 \\
+{\bf \href{http://www.astro.gla.ac.uk/?page_id=3673}{CESRA Radio Summer School}}, Volunteer Organiser \hfill 2015
+%\end{innerlist}
+
+\section{Scientific Outreach}
+
+%\begin{innerlist}
+{\bf \href{http://www.glasgowsciencecentre.org/}{Glasgow Science Centre}}, Demonstrator \hfill 2016  \\
+{\bf \href{https://www.britishscienceweek.org/}{British Science Week}}, Demonstrator \hfill 2016 \\
+{\bf \href{http://www.gla.ac.uk/explore/scienceconnects/news/headline_451512_en.html}{Institute of Physics: {\it Women and Girls in Science}}}, Demonstrator \hfill 2016 \\
+{\bf \href{http://www.stv.tv/}{Scottish Television (STV)}}, Guest Presenter \hfill 2015 \\
+{\bf \href{http://www.worldwidetelescope.org/}{World Wide Telescope}}, Ambassador \hfill 2013 -- 2014 \\
+{\bf \href{http://www.bbc.co.uk/programmes/b019h4g8}{BBC Stargazing Live}}, Demonstrator \hfill 2013 \\
+{\bf \href{http://www.southampton.ac.uk/~sj2y10/}{So'ton Astrodome}}, Demonstrator \hfill 2012 \\
+{\bf \href{http://www.bbc.co.uk/programmes/b00lwxj1}{BBC Bang Goes The Theory Roadshow}}, Demonstrator \hfill 2012
+
+\halfblankline
+
+{\bf {UK Solar Physics (UKSP) Nuggets}}, concise, easy-to-read science articles
+\begin{innerlist}
+\item[] {\href{http://www.uksolphys.org/uksp-nugget/84-the-first-nustar-microflare}{84. The first {\it NuSTAR} microflare} \hfill 2017
+\end{innerlist}
+
+\halfblankline
+
+{\bf {Hinode/XRT Picture of the Week (XPOW)}}
+\begin{innerlist}
+\item[] {\href{http://xrt.cfa.harvard.edu/xpow/20171031.html}{The First Microflare Observations with {\it Hinode}/XRT \& {\it NuSTAR}} \hfill 2017
+\end{innerlist}
+\end{innerlist}
+
+\section{Personal Projects} {\bf \href{https://github.com/PaulJWright/ColourBlind}{ColourBlind}}, A repository for colour-blind-friendly colour tables. %\hfill Citations: 1
+
+\newpage
+\makeheading{Paul James Wright} 
+
+\section{Professional Development}
+{\bf{Coursera, Inc. (MOOC Platform)}} \\
+{Using Coursera.org, a massive open online course (MOOC) platform, to take specialisations (a series of related courses plus a final capstone project) offered by accredited universities to further develop skills and understanding in a wide range of topics.} \\
+%{\bf{Massive Open Online Course}}:
+\begin{innerlist}
+    \item[] {\bf{\href{https://www.coursera.org/specializations/jhu-data-science}{Data Science}}}, Johns Hopkins University \hfill{2017 -- present}
+    \begin{innerlist}
+    	\item[] Nine-course (plus capstone) introduction to data science.
+    \end{innerlist}
+    \item[] {\bf{\href{https://www.coursera.org/specializations/r}{Mastering Software Development in R}}}, Johns Hopkins University \hfill{2018 -- present}
+    \begin{innerlist}
+    	\item[] Four-course (plus capstone) specialisation providing rigorous training in R.
+    \end{innerlist}
+    %\item[] {\bf{\href{https://www.coursera.org/specializations/statistics}{Statistics with R}}}, Duke University \hfill{2018 -- present}
+    %\begin{innerlist}
+    %	\item[] Four-course (plus capstone) specialisation providing further training in R, with emphasis on statistics.
+    %\end{innerlist}    
+\end{innerlist}    
+
+
+
+%\section{Professional Development (Cont.)}    
+%\begin{innerlist}
+%    \item[] {\bf{\href{https://www.coursera.org/specializations/big-data}{Big Data}}}, UC San Diego \hfill{2017 -- present}
+%    \begin{innerlist}
+%    	\item[]  Five-course (plus capstone) introduction to big data using Hadoop with MapReduce, Spark, Pig and Hive.
+%    \end{innerlist}        
+%    \item[] {\bf{\href{https://www.coursera.org/specializations/machine-learning}{Machine Learning}}}, University of Washington \hfill{2017 -- present}
+%    \begin{innerlist}
+%    	\item[] Three-course (plus capstone) introduction to Machine Learning.
+%    \end{innerlist}       
+%    \item[] {\bf{\href{https://www.coursera.org/specializations/graphic-design}{Graphic Design}}}, CalArts \hfill{2017 -- present}
+%    \begin{innerlist}
+%    	\item[] Four-course (plus capstone) introduction the fundamental skills required to make sophisticated graphic design. \\
+ %   \end{innerlist}
+ \end{innerlist}
+
+%\newpage
+%\makeheading{Paul James Wright} 
+
+%
+%\section{Professional Development (Cont.)}    
+%{\bf{edx, Inc. (MOOC Platform)}}
+%%{\bf{Massive Open Online Course}}:
+%    \begin{innerlist}
+%    \item[] {\bf{\href{https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!}{Introduction to Computer Science (CS50x)}}}, Harvard University \hfill{2017 -- present}
+%    \begin{innerlist}
+%    \item[] An introduction to the intellectual enterprises of computer science and the art of programming including languages such as C, and SQL.
+%    \end{innerlist}
+               
+% Courses I want to address
+      
+%   \item[] {\it{Specializations/Series}}: \href{https://www.coursera.org/specializations/big-data}{Big Data (UC San Diego)}; \href{https://www.coursera.org/specializations/jhu-data-science}{Data Science (Johns Hopkins)}; \href{https://www.coursera.org/specializations/statistics}{Statistics with R (Duke)}; \href{https://www.edx.org/microsoft-data-science-curriculum}{Data Science (Microsoft)}; \href{https://digitalgarage.withgoogle.com}{Google Digital Garage}; \href{https://academy.microsoft.com/en-us/professional-program/data-science/}{Microsoft Professional Program Certificate in Data Science}; \href{https://www.edx.org/course/machine-learning-columbiax-csmm-102x}{Machine Learning (Columbia)}
+%   \item[] {\it{Single Courses}}: \href{https://www.coursera.org/learn/machine-learning}{Machine Learning (Stanford)}; \href{https://www.coursera.org/learn/bayesian-statistics}{Bayesian Statistics (UC Santa Cruz)}; \href{https://www.edx.org/course/introduction-computer-science-harvardx-cs50x}{Introduction to Computer Science (CS50x; Harvard)}; \href{https://www.edx.org/xseries/genomics-data-analysis}{Genomics Data Analysis; Harvard}; \href{https://www.edx.org/course/machine-learning-columbiax-csmm-102x}{Machine Learning (Columbia)}; \href{https://www.edx.org/course/statistical-inference-modeling-high-harvardx-ph525-3x}{Statistical Inference and Modeling for High-throughput Experiments}; \href{https://www.edx.org/course/high-dimensional-data-analysis-harvardx-ph525-4x}{High-Dimensional Data Analysis} \href{https://www.edx.org/course/introduction-computational-thinking-data-mitx-6-00-2x-5}{Introduction to Computational Thinking and Data Science}
+    \end{innerlist}
+
+% \section{Technical Skills:} {\it Computing:} C, Python, R (caret, ggplot2, knitr), SQL, CRAN, IDL, $\LaTeX$, git, GitHub, Hadoop (MapReduce, Spark, Pig, Hive), Linux/Unix, Mac OSX, Microsoft Windows, Bash, Microsoft Office, Adobe Creative Cloud, Keynote, Wordpress, Shiny, GoogleVis, and Plotly, HTML, CSS, Javascript
+% \\ \\
+%{\it General:} Data Analysis, Data Visualization, Interdisciplinary Collaboration, Public Speaking, Statistics, Teaching, Writing (Technical \& Lay)
+
+\section{Technical Skills:} {\it Computing:} IDL (5+ years), Python (2+ years), PyTorch, R, Bash, $\LaTeX$, PyCharm, IRAF, git (GitHub, Gitlab), Microsoft Office, Adobe Creative Cloud, Linux/Unix, Mac OSX, Microsoft Windows
+
+\halfblankline
+
+{\it General:} Data Analysis, Data Visualisation, Interdisciplinary Collaboration, Public Speaking, Teaching, Writing (Technical \& Lay)
+
+%\section{References}
+%Dr Iain Hannah \\
+%\begin{innerlist}
+%\item{} Rm 620, SUPA School of Physics \& Astronomy, \\ Kelvin Building, \\ University of Glasgow, \\ Glasgow, \\ G12 8QQ, \\ UK
+%\item{} Email: iain.hannah@glasgow.ac.uk
+%\item{} Office Phone: +44 141 330 6427
+%\end{innerlist}    
+%Dr Alexander MacKinnon \\
+%\begin{innerlist}
+%\item{} Rm 620, SUPA School of Physics \& Astronomy, \\ Kelvin Building, \\ University of Glasgow, \\ Glasgow, \\ G12 8QQ, \\ UK
+%\item{} Email: iain.hannah@glasgow.ac.uk
+%\item{} Office Phone: +44 141 330 6427
+%\end{innerlist}    
+%Dr Steven Saar \\
+%\begin{innerlist}
+%\item{} Rm 620, SUPA School of Physics \& Astronomy, \\ Kelvin Building, \\ University of Glasgow, \\ Glasgow, \\ G12 8QQ, \\ UK
+%\item{} Email: iain.hannah@glasgow.ac.uk
+%\item{} Office Phone: +44 141 330 6427
+%\end{innerlist}    
+
+        
+%\section{More Information}
+
+%More information and auxiliary documents can be found at \href{http://www.pauljwright.co.uk}{http://www.pauljwright.co.uk}, on \href{https://www.researchgate.net/profile/Paul_Wright7}{ResearchGate}, and \href{http://www.github.com/pauljwright}{GitHub}.
+
+%\section{References}    
+%\begin{innerlist}
+%    \item[] {\bf{Dr Iain G. Hannah}} \\ SUPA School of Physics and Astronomy \\ University of Glasgow \\ Glasgow, G12 8QQ, UK \\ iain.hannah@glasgow.ac.uk \\
+%    \item[] {\bf{Dr Steven Saar}} \\ Harvard-Smithsonian Center for Astrophysics \\ 60 Garden Street \\ Cambridge, MA 02138, USA  \\ ssaar@cfa.harvard.edu \\
+%\end{innerlist}
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
