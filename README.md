@@ -18,6 +18,10 @@ Solar Active Region Observed with NuSTAR, Hinode/XRT, and SDO/AIA</i>, ApJ, 844,
 Input in the Late Phase of a Solar Flare from NuSTAR X-ray Observations</i>, ApJ,
 835, 6, http://doi:10.3847/1538-4357/835/1/6
 
+## BOOK CHAPTERS:
+
+5. Wright, P. J., et al 2018, <i>DeepEM: A Deep Learning Approach to DEM Inversion</i> https://helioml.github.io/HelioML/chapters/04/Differential_Emission_Measurements
+
 ## FIRST AUTHOR PUBLICATIONS IN PREPERATION:
 
 	
@@ -27,6 +31,3 @@ Input in the Late Phase of a Solar Flare from NuSTAR X-ray Observations</i>, ApJ
 
 8. Wright, P. J., Saar, S. H., Meibom, S., et al <i>The Age-Dependent Superflare Rates of G-Type Dwarfs In Three Kepler Clusters</i>
 
-## BOOK CHAPTERS IN PREPERATION:
-
-7. Wright, P. J., et al 2018, <i>DeepEM: A Deep Learning Approach to DEM Inversion</i>
